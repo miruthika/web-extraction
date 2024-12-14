@@ -1,0 +1,32 @@
+import requests
+from bs4 import BeautifulSoup
+def fetch_and_process_page(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        print("Page successfully retrieved!")
+    else:
+        print("Failed to retrieve the page.")
+        return
+    # Get the raw HTML content
+    html_content = response.text
+    print("\nRaw HTML Content:")
+    print(html_content)
+    # Parse the HTML using BeautifulSoup
+    soup = BeautifulSoup(html_content, 'html.parser')
+    # Prettify the HTML to make it readable
+    prettified_html = soup.prettify()
+    print("\nPrettified HTML Content:")
+    print(prettified_html)
+    # Find all image tags in the page
+    images = soup.find_all('img')
+    # Print all the image tags found
+    print("\nList of Image Tags:")
+    for img in images:
+        print(img)
+    # Count and print the number of image tags
+    num_images = len(images)
+    print(f"\nTotal Number of Images: {num_images}")
+# Input URL from the user
+url = input("Enter the URL: ")
+# Call the function with the user-provided URL
+fetch_and_process_page(url)
