@@ -47,5 +47,8 @@
             <button type="submit">Extract Data</button>
         </form>
     </div>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
 </body>
 </html>
